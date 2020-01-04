@@ -1,0 +1,25 @@
+.navbar {
+  flex: 2;
+  color: #ffffff;
+  padding: 16px 0px;
+}
+
+.list-item {
+  display: flex;
+  margin: 8px 0px;
+}
+
+.list-item-active,
+.list-item:hover {
+  background-color: #ff0000;
+  border-radius: 0px 10px 10px 0px;
+}
+
+.list-icon {
+  margin: 16px;
+}
+
+.list-title {
+  align-self: center;
+  font-size: 16px;
+}

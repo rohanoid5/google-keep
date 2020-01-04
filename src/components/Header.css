@@ -1,0 +1,32 @@
+.header {
+  padding: 8px;
+  background-color: #282c34;
+  color: #ffffff;
+  position: relative;
+  top: 0px;
+  display: flex;
+  align-items: center;
+}
+
+.navbar-icon {
+  display: flex;
+  flex: 2;
+  align-items: center;
+}
+
+.hamburger {
+  margin: 16px;
+}
+
+.icon-title {
+  /* flex: 2; */
+}
+
+.search-box {
+  flex: 7;
+  display: flex;
+}
+
+.action-area {
+  flex: 3;
+}
