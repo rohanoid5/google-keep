@@ -2,12 +2,19 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Notes from '../components/Notes';
 
-import { toggleNote, removeNote } from '../actions/noteAction';
+import { toggleNote, removeNote, updateNote } from '../actions/noteAction';
 
 class NotesContainer extends Component {
   render() {
-    const { notes, onRemove, onArchive } = this.props;
-    return <Notes notes={notes} onRemove={onRemove} onArchive={onArchive} />;
+    const { notes, onRemove, onArchive, onUpdate } = this.props;
+    return (
+      <Notes
+        notes={notes}
+        onRemove={onRemove}
+        onArchive={onArchive}
+        onUpdate={onUpdate}
+      />
+    );
   }
 }
 
@@ -28,6 +35,9 @@ const mapDispatchToProps = dispatch => ({
   },
   onRemove(note) {
     dispatch(removeNote(note));
+  },
+  onUpdate(note) {
+    dispatch(updateNote(note));
   }
 });
 

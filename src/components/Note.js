@@ -1,14 +1,39 @@
 import React, { useState } from 'react';
+import './Note.css';
 
-const Note = ({ note, onRemove, onArchive }) => {
+const Note = ({
+  note,
+  onRemove,
+  onArchive,
+  setModalVisibility,
+  setSelectedNote
+}) => {
   const [showActions, setShowActions] = useState(false);
+
+  const onNoteSelect = e => {
+    console.log(e.target, e.currentTarget);
+    setModalVisibility(true);
+    setSelectedNote(note);
+  };
+
+  const handleArchive = e => {
+    e.stopPropagation();
+    onArchive(note);
+  };
+
+  const handleRemove = e => {
+    e.stopPropagation();
+    onRemove(note);
+  };
 
   return (
     <div className="note">
       <div
         className="note-inner"
+        onMouseOver={() => setShowActions(true)}
         onMouseEnter={() => setShowActions(true)}
         onMouseLeave={() => setShowActions(false)}
+        onClick={onNoteSelect}
       >
         <div className="note-title">{note.title}</div>
         <div className="note-content">{note.body}</div>
@@ -21,7 +46,7 @@ const Note = ({ note, onRemove, onArchive }) => {
                     ? 'material-icons md-18'
                     : 'material-icons-outlined  md-18'
                 }
-                onClick={() => onArchive(note)}
+                onClick={handleArchive}
               >
                 archive
               </i>
@@ -38,7 +63,7 @@ const Note = ({ note, onRemove, onArchive }) => {
             </div>
           )}
           {showActions && (
-            <div className="note-action icon" onClick={() => onRemove(note)}>
+            <div className="note-action icon" onClick={handleRemove}>
               <i className="material-icons md-18">delete</i>
             </div>
           )}

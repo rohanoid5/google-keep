@@ -15,6 +15,10 @@ const SearchBox = ({ suggestions }) => {
     userInput: ''
   });
 
+  const displaySuggestions = notes => {
+    // console.log(notes);
+  };
+
   const onChange = e => {
     const userInput = e.currentTarget.value;
 
@@ -113,13 +117,14 @@ const SearchBox = ({ suggestions }) => {
         <div className="search-component">
           <i className="material-icons search-icon">search</i>
           <input
+            placeholder="Search"
             className="search-input"
             type="text"
             onChange={e => filterProps.updateFilter(e.currentTarget.value)}
             // onKeyDown={onKeyDown}
             value={filterProps.value}
           />
-          {/* <div>{suggestionsListComponent}</div> */}
+          <div>{displaySuggestions(filterProps.notes)}</div>
           <i className="material-icons search-icon">close</i>
         </div>
       )}

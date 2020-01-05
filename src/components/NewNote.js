@@ -1,12 +1,9 @@
 import React, { useRef, useEffect, useState } from 'react';
+import { DEFAULT_STATE } from '../utils/constants';
 import autosize from 'autosize';
 
 const NewNote = ({ addNewNote }) => {
-  const [state, setState] = useState({
-    title: '',
-    body: '',
-    isArchived: false
-  });
+  const [state, setState] = useState(DEFAULT_STATE);
   const contentInput = useRef(null);
 
   useEffect(() => {
@@ -25,6 +22,7 @@ const NewNote = ({ addNewNote }) => {
     let { title, body } = state;
     if (title !== '' || body !== '') {
       addNewNote(title, body, '');
+      setState(DEFAULT_STATE);
     }
   };
 

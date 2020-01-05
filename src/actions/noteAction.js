@@ -1,6 +1,7 @@
 import {
   UPDATE_ALL_NOTES,
   ADD_NEW_NOTE,
+  UPDATE_NOTE,
   REMOVE_NOTE,
   TOGGLE_NOTE,
   UPDATE_ALL_AS_ARCHIVE
@@ -31,6 +32,17 @@ export const addNewNote = (title, body, image) => {
     API.add(note).then(note => {
       dispatch({
         type: ADD_NEW_NOTE,
+        note
+      });
+    });
+  };
+};
+
+export const updateNote = note => {
+  return (dispatch, getState) => {
+    API.update(note).then(() => {
+      dispatch({
+        type: UPDATE_NOTE,
         note
       });
     });

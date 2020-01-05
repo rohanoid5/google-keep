@@ -1,6 +1,7 @@
 import {
   UPDATE_ALL_NOTES,
   ADD_NEW_NOTE,
+  UPDATE_NOTE,
   REMOVE_NOTE,
   TOGGLE_NOTE,
   UPDATE_ALL_AS_ARCHIVE,
@@ -21,7 +22,7 @@ export default (state = {}, action) => {
     return state.filter(note => note.id !== action.id);
   }
 
-  if (action.type === TOGGLE_NOTE) {
+  if (action.type === UPDATE_NOTE || action.type === TOGGLE_NOTE) {
     return state.map(note => {
       if (note.id === action.note.id) return { ...action.note };
       return note;
