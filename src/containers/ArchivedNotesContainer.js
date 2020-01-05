@@ -11,9 +11,14 @@ class NotesContainer extends Component {
   }
 }
 
-const mapStateToProps = ({ notes }) => {
+const mapStateToProps = ({ notes, filter }) => {
   return {
-    notes: notes.filter(note => note.isArchived)
+    notes: notes.filter(
+      note =>
+        note.isArchived &&
+        (note.title.toLowerCase().includes(filter.noteTitleFilter) ||
+          note.body.toLowerCase().includes(filter.noteTitleFilter))
+    )
   };
 };
 

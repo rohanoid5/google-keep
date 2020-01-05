@@ -1,6 +1,5 @@
 import React from 'react';
 import './MainDisplay.css';
-import './buttons.css';
 import NotesContainer from '../containers/NotesContainer';
 import ArchivedNotesContainer from '../containers/ArchivedNotesContainer';
 import NewNoteContainer from '../containers/NewNoteContainer';

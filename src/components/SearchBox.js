@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import './SearchBox.css';
 
+import FilterContainer from '../containers/FilterContainer';
+
 const SearchBox = ({ suggestions }) => {
   const [state, setState] = useState({
     // The active selection's index
@@ -106,18 +108,22 @@ const SearchBox = ({ suggestions }) => {
   }
 
   return (
-    <div className="search-component">
-      <i className="material-icons search-icon">search</i>
-      <input
-        className="search-input"
-        type="text"
-        onChange={onChange}
-        onKeyDown={onKeyDown}
-        value={userInput}
-      />
-      <div>{suggestionsListComponent}</div>
-      <i className="material-icons search-icon">close</i>
-    </div>
+    <FilterContainer>
+      {filterProps => (
+        <div className="search-component">
+          <i className="material-icons search-icon">search</i>
+          <input
+            className="search-input"
+            type="text"
+            onChange={e => filterProps.updateFilter(e.currentTarget.value)}
+            // onKeyDown={onKeyDown}
+            value={filterProps.value}
+          />
+          {/* <div>{suggestionsListComponent}</div> */}
+          <i className="material-icons search-icon">close</i>
+        </div>
+      )}
+    </FilterContainer>
   );
 };
 

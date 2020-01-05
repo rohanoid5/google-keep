@@ -3,8 +3,7 @@ import {
   ADD_NEW_NOTE,
   REMOVE_NOTE,
   TOGGLE_NOTE,
-  UPDATE_ALL_AS_ARCHIVE,
-  UPDATE_ALL_AS_UNARCHIVE
+  UPDATE_ALL_AS_ARCHIVE
 } from '../utils/constants';
 
 import API from '../apiCaller';
