@@ -14,9 +14,21 @@
   box-sizing: border-box;
 }
 
+.note-title {
+  margin: 8px;
+  font-size: 18px;
+}
+
+.note-content {
+  margin: 8px;
+  font-size: 14px;
+}
+
 .note-actions {
-  position: absolute;
-  bottom: 0px;
+  margin-top: 8px;
+  display: flex;
+  justify-content: flex-end;
+  min-height: 28px;
 }
 
 .note-add-container {
@@ -55,6 +67,10 @@
 
 .note-add-actions {
   display: flex;
+}
+
+.note-action {
+  margin-left: 4px;
 }
 
 .icon {
@@ -111,6 +127,7 @@
     width: 25%;
   }
 }
+
 .note-inner {
   background-color: inherit;
   min-height: 4em;
@@ -122,6 +139,7 @@
   padding: 8px;
   position: relative;
 }
+
 .note:hover .note-inner {
   box-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
 }

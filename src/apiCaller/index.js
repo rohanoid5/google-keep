@@ -51,7 +51,7 @@ export default {
     const notes = await getAll();
     localforage.setItem(
       'notes',
-      notes.filter(({ packed }) => packed)
+      notes.filter(({ isArchived }) => isArchived)
     );
   }
 };

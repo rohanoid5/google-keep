@@ -39,7 +39,7 @@ export const addNewNote = (title, body, image) => {
 };
 
 export const toggleNote = note => {
-  const updatedNote = { ...note, packed: !note.isArchived };
+  const updatedNote = { ...note, isArchived: !note.isArchived };
   return (dispatch, getState) => {
     API.update(updatedNote).then(() => {
       dispatch({

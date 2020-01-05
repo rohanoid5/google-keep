@@ -10,7 +10,7 @@ const filter = {
 };
 
 export default {
-  notes
+  notes,
   // newNote,
-  // filter
+  filter
 };

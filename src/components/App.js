@@ -8,7 +8,8 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isNavbarCollapased: false
+      isNavbarCollapased: false,
+      selctedIndex: 0
     };
   }
 
@@ -20,17 +21,26 @@ class App extends Component {
     });
   };
 
+  setSelectedIndex = index =>
+    this.setState({
+      selctedIndex: index
+    });
+
   render() {
+    const { selctedIndex, isNavbarCollapased } = this.state;
     return (
       <div className="App">
         <Header
-          isNavbarCollapased={this.state.isNavbarCollapased}
+          isNavbarCollapased={isNavbarCollapased}
           setNavbarCollapse={this.setNavbarCollapse}
         />
         <div style={{ backgroundColor: '#BBB', height: '1px' }}></div>
         <div className="container">
-          <NavBar />
-          <MainDisplay />
+          <NavBar
+            selctedIndex={selctedIndex}
+            setSelectedIndex={this.setSelectedIndex}
+          />
+          <MainDisplay selctedIndex={selctedIndex} />
         </div>
       </div>
     );

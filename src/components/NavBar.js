@@ -12,17 +12,15 @@ const MAIN_LIST = [
   }
 ];
 
-const NavBar = () => {
-  const [mainItemIndex, setMainItemIndex] = useState(0);
-
+const NavBar = ({ selctedIndex, setSelectedIndex }) => {
   const renderListItem = MAIN_LIST.map(({ icon, title }, index) => {
     return (
       <div
         key={title}
         className={
-          mainItemIndex === index ? 'list-item list-item-active' : 'list-item'
+          selctedIndex === index ? 'list-item list-item-active' : 'list-item'
         }
-        onClick={() => setMainItemIndex(index)}
+        onClick={() => setSelectedIndex(index)}
       >
         <i className="material-icons list-icon">{icon}</i>
         <div className="list-title">{title}</div>
