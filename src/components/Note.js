@@ -11,7 +11,6 @@ const Note = ({
   const [showActions, setShowActions] = useState(false);
 
   const onNoteSelect = e => {
-    console.log(e.target, e.currentTarget);
     setModalVisibility(true);
     setSelectedNote(note);
   };
@@ -35,6 +34,11 @@ const Note = ({
         onMouseLeave={() => setShowActions(false)}
         onClick={onNoteSelect}
       >
+        {showActions && (
+          <div className="star-icon-action icon">
+            <i className="material-icons md-18">star_border</i>
+          </div>
+        )}
         <div className="note-title">{note.title}</div>
         <div className="note-content">{note.body}</div>
         <div className="note-actions">

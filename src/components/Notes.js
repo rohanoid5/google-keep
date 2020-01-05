@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import autosize from 'autosize';
+import localforage from 'localforage';
 import { DEFAULT_STATE } from '../utils/constants';
 import Note from './Note';
 
@@ -11,7 +12,17 @@ const Notes = ({ notes, onRemove, onArchive, onUpdate }) => {
   useEffect(() => {
     contentInput.current.focus();
     autosize(contentInput.current);
+    localforage.getItem('selectionInfo').then(res => {
+      if (res.modalVisibility && res.selectedNote) {
+        setModalVisibility(true);
+        setSelectedNote(res.selectedNote);
+      }
+    });
   }, []);
+
+  useEffect(() => {
+    localforage.setItem('selectionInfo', { modalVisibility, selectedNote });
+  }, [modalVisibility, selectedNote]);
 
   const onNoteChange = e => {
     let note = {

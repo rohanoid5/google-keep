@@ -14,5 +14,7 @@ export const UPDATE_ALL_NOTES = 'UPDATE_ALL_NOTES';
 export const DEFAULT_STATE = {
   title: '',
   body: '',
-  isArchived: false
+  image: '',
+  isArchived: false,
+  isStarred: false
 };

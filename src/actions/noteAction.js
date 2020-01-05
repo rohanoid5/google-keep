@@ -20,8 +20,9 @@ export const getAllNotes = () => {
   };
 };
 
-export const addNewNote = (title, body, image) => {
+export const addNewNote = (title, body, image = '', isStarred = false) => {
   const note = {
+    isStarred: false,
     isArchived: false,
     title,
     body,
