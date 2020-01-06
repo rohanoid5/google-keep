@@ -4,6 +4,10 @@
   padding: 16px 0px;
 }
 
+.navbar-hidden {
+  display: none;
+}
+
 .list-item {
   display: flex;
   margin: 8px 0px;

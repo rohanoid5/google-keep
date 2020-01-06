@@ -2,13 +2,13 @@ import React from 'react';
 import './Header.css';
 import SearchBox from './SearchBox';
 
-function Header({ isNavbarCollapased, setNavbarCollapse }) {
+function Header({ setNavbarCollapse }) {
   return (
     <header className="header">
       <div className="navbar-icon">
-        <i className="material-icons hamburger" onClick={setNavbarCollapse}>
-          menu
-        </i>
+        <div className="icon" onClick={setNavbarCollapse}>
+          <i className="material-icons hamburger">menu</i>
+        </div>
         <div className="icon-title">Google Keep</div>
       </div>
       <div className="search-box">

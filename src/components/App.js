@@ -30,15 +30,13 @@ class App extends Component {
     const { selctedIndex, isNavbarCollapased } = this.state;
     return (
       <div className="App">
-        <Header
-          isNavbarCollapased={isNavbarCollapased}
-          setNavbarCollapse={this.setNavbarCollapse}
-        />
+        <Header setNavbarCollapse={this.setNavbarCollapse} />
         <div style={{ backgroundColor: '#BBB', height: '1px' }}></div>
         <div className="container">
           <NavBar
             selctedIndex={selctedIndex}
             setSelectedIndex={this.setSelectedIndex}
+            isNavbarCollapased={isNavbarCollapased}
           />
           <MainDisplay selctedIndex={selctedIndex} />
         </div>

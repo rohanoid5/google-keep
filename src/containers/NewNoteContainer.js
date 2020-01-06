@@ -7,7 +7,13 @@ import { addNewNote } from '../actions/noteAction';
 
 class NewNoteContainer extends Component {
   render() {
-    return <NewNote addNewNote={this.props.addNewNote} />;
+    return (
+      <NewNote
+        addNewNote={this.props.addNewNote}
+        isFocussed={this.props.isFocussed}
+        setFocus={this.props.setFocus}
+      />
+    );
   }
 }
 

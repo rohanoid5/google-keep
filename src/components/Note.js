@@ -12,6 +12,7 @@ const Note = ({
   const [showActions, setShowActions] = useState(false);
 
   const onNoteSelect = e => {
+    e.stopPropagation();
     setModalVisibility(true);
     setSelectedNote(note);
   };

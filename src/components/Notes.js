@@ -14,7 +14,7 @@ const Notes = ({ notes, onRemove, onArchive, onUpdate, onStar }) => {
     contentInput.current.focus();
     autosize(contentInput.current);
     localforage.getItem('selectionInfo').then(res => {
-      if (res.modalVisibility && res.selectedNote) {
+      if (res && res.modalVisibility && res.selectedNote) {
         setModalVisibility(true);
         setSelectedNote(res.selectedNote);
       }

@@ -12,7 +12,7 @@ const MAIN_LIST = [
   }
 ];
 
-const NavBar = ({ selctedIndex, setSelectedIndex }) => {
+const NavBar = ({ isNavbarCollapased, selctedIndex, setSelectedIndex }) => {
   const renderListItem = MAIN_LIST.map(({ icon, title }, index) => {
     return (
       <div
@@ -29,7 +29,7 @@ const NavBar = ({ selctedIndex, setSelectedIndex }) => {
   });
 
   return (
-    <nav className="navbar">
+    <nav className={isNavbarCollapased ? 'navbar navbar-hidden' : 'navbar'}>
       {renderListItem}
       <div style={{ backgroundColor: '#BBB', height: '1px' }}></div>
     </nav>
