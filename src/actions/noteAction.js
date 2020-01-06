@@ -50,6 +50,18 @@ export const updateNote = note => {
   };
 };
 
+export const starNote = note => {
+  const updatedNote = { ...note, isStarred: !note.isStarred };
+  return (dispatch, getState) => {
+    API.update(updatedNote).then(() => {
+      dispatch({
+        type: TOGGLE_NOTE,
+        note: updatedNote
+      });
+    });
+  };
+};
+
 export const toggleNote = note => {
   const updatedNote = { ...note, isArchived: !note.isArchived };
   return (dispatch, getState) => {

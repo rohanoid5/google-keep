@@ -5,6 +5,7 @@ const Note = ({
   note,
   onRemove,
   onArchive,
+  onStar,
   setModalVisibility,
   setSelectedNote
 }) => {
@@ -25,6 +26,11 @@ const Note = ({
     onRemove(note);
   };
 
+  const handleStar = e => {
+    e.stopPropagation();
+    onStar(note);
+  };
+
   return (
     <div className="note">
       <div
@@ -35,22 +41,23 @@ const Note = ({
         onClick={onNoteSelect}
       >
         {showActions && (
-          <div className="star-icon-action icon">
-            <i className="material-icons md-18">star_border</i>
+          <div className="star-icon-action icon" onClick={handleStar}>
+            <i className="material-icons md-18">
+              {note.isStarred ? 'star' : 'star_border'}
+            </i>
           </div>
         )}
         <div className="note-title">{note.title}</div>
         <div className="note-content">{note.body}</div>
         <div className="note-actions">
           {showActions && (
-            <div className="note-action icon">
+            <div className="note-action icon" onClick={handleArchive}>
               <i
                 className={
                   note.isArchived
                     ? 'material-icons md-18'
                     : 'material-icons-outlined  md-18'
                 }
-                onClick={handleArchive}
               >
                 archive
               </i>

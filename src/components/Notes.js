@@ -4,9 +4,10 @@ import localforage from 'localforage';
 import { DEFAULT_STATE } from '../utils/constants';
 import Note from './Note';
 
-const Notes = ({ notes, onRemove, onArchive, onUpdate }) => {
+const Notes = ({ notes, onRemove, onArchive, onUpdate, onStar }) => {
   const [selectedNote, setSelectedNote] = useState(DEFAULT_STATE);
   const [modalVisibility, setModalVisibility] = useState(false);
+  const [tagVisibility, setTagVisibility] = useState(false);
   const contentInput = useRef(null);
 
   useEffect(() => {
@@ -24,6 +25,14 @@ const Notes = ({ notes, onRemove, onArchive, onUpdate }) => {
     localforage.setItem('selectionInfo', { modalVisibility, selectedNote });
   }, [modalVisibility, selectedNote]);
 
+  useEffect(() => {
+    if (notes.filter(item => item.isStarred).length > 0) {
+      setTagVisibility(true);
+    } else {
+      setTagVisibility(false);
+    }
+  }, [notes]);
+
   const onNoteChange = e => {
     let note = {
       ...selectedNote,
@@ -35,20 +44,48 @@ const Notes = ({ notes, onRemove, onArchive, onUpdate }) => {
 
   return (
     <div>
+      {tagVisibility && <div className="note-tag">STARRED</div>}
       <div className="notes">
-        {notes.map(item => {
-          return (
-            <Note
-              key={item.id}
-              className="note"
-              note={item}
-              onRemove={onRemove}
-              onArchive={onArchive}
-              setModalVisibility={setModalVisibility}
-              setSelectedNote={setSelectedNote}
-            />
-          );
-        })}
+        {notes
+          .filter(item => item.isStarred)
+          .map(item => {
+            return (
+              <Note
+                key={item.id}
+                className="note"
+                note={item}
+                onRemove={onRemove}
+                onArchive={onArchive}
+                onStar={onStar}
+                setModalVisibility={setModalVisibility}
+                setSelectedNote={setSelectedNote}
+              />
+            );
+          })}
+        {modalVisibility}
+      </div>
+      {tagVisibility && (
+        <div style={{ marginTop: '8px' }} className="note-tag">
+          OTHERS
+        </div>
+      )}
+      <div className="notes">
+        {notes
+          .filter(item => !item.isStarred)
+          .map(item => {
+            return (
+              <Note
+                key={item.id}
+                className="note"
+                note={item}
+                onRemove={onRemove}
+                onArchive={onArchive}
+                onStar={onStar}
+                setModalVisibility={setModalVisibility}
+                setSelectedNote={setSelectedNote}
+              />
+            );
+          })}
         {modalVisibility}
       </div>
       <div className={modalVisibility ? 'modale opened' : 'modale'}>
