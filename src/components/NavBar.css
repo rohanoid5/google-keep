@@ -1,6 +1,5 @@
 .navbar {
   flex: 2;
-  color: #ffffff;
   padding: 16px 0px;
   display: none;
 }
@@ -16,7 +15,7 @@
 
 .list-item-active,
 .list-item:hover {
-  background-color: #a53131;
+  background-color: #e67b7b;
   border-radius: 0px 10px 10px 0px;
 }
 

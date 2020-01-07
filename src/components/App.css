@@ -1,9 +1,17 @@
 .App {
-  /* text-align: center; */
+  min-height: 100vh;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.App-dark {
   background-color: #282c34;
   min-height: 100vh;
-  color: white;
-  font-family: 'Montserrat', sans-serif;
+  color: #ffffff;
+}
+
+.App-light {
+  background-color: #ececec;
+  color: #161616;
 }
 
 .App-logo {
@@ -23,7 +31,7 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: inherit;
   min-height: 100vh;
   display: flex;
   flex-direction: column;

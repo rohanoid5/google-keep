@@ -29,7 +29,7 @@ class App extends Component {
   render() {
     const { selctedIndex, isNavbarCollapased } = this.state;
     return (
-      <div className="App">
+      <div className="App App-dark">
         <Header setNavbarCollapse={this.setNavbarCollapse} />
         <div style={{ backgroundColor: '#BBB', height: '1px' }}></div>
         <div className="container">

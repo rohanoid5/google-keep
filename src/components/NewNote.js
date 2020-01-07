@@ -97,16 +97,7 @@ const NewNote = ({ isFocussed, setFocus, noteState, setNoteState, onSave }) => {
         className="note-add"
         onClick={e => e.stopPropagation()}
       >
-        <div
-          style={{
-            padding: 8,
-            cursor: 'text',
-            color: '#cccccc',
-            fontWeight: 'bold',
-            flex: '9'
-          }}
-          onClick={() => setFocus(true)}
-        >
+        <div className="note-add-unfocussed" onClick={() => setFocus(true)}>
           Take a note
         </div>
         <div style={{ flex: '1', display: 'flex' }}>

@@ -8,8 +8,15 @@
 .search-component {
   display: flex;
   width: 100%;
-  background-color: #666666;
   border-radius: 8px;
+}
+
+.search-component-dark {
+  background-color: #666666;
+}
+
+.search-component-light {
+  background-color: #cfcfcf;
 }
 
 .search-icon {

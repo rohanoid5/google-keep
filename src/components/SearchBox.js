@@ -23,7 +23,7 @@ const SearchBox = ({ updateFilter, value }) => {
   }, [filterValue]);
 
   return (
-    <div className="search-component">
+    <div className="search-component search-component-dark">
       <i
         className="icon material-icons search-icon"
         onClick={() => searchInput.current.focus()}

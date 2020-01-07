@@ -1,7 +1,6 @@
 .header {
   padding: 8px;
-  background-color: #282c34;
-  color: #ffffff;
+  background-color: inherit;
   position: relative;
   top: 0px;
   display: flex;
@@ -20,6 +19,7 @@
 
 .icon-title {
   display: none;
+  font-weight: bold;
 }
 
 .search-box {

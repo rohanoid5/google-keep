@@ -99,6 +99,11 @@
   background-color: rgb(95, 95, 95);
 }
 
+.icon-light:hover,
+.note-btn-light:hover {
+  background-color: rgb(185, 185, 185);
+}
+
 .note-btns {
   position: absolute;
   bottom: 16px;
@@ -110,7 +115,7 @@
   font-size: 14px;
   background-color: inherit;
   border: none;
-  color: #ffffff;
+  color: inherit;
   cursor: pointer;
   outline: none;
   border-radius: 4px;
@@ -204,4 +209,15 @@
   position: absolute;
   bottom: 8px;
   right: 8px;
+}
+
+.note-add-unfocussed {
+  padding: 8px;
+  cursor: text;
+  font-weight: bold;
+  flex: 9;
+}
+
+.note-add-unfocussed-dark {
+  color: '#cccccc';
 }
