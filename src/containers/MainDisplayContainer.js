@@ -1,19 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import NewNote from '../components/NewNote';
+import MainDisplay from '../components/MainDisplay';
 
 import { addNewNote } from '../actions/noteAction';
 
-class NewNoteContainer extends Component {
+class MainDisplayContainer extends Component {
   render() {
     return (
-      <NewNote
+      <MainDisplay
         addNewNote={this.props.addNewNote}
-        isFocussed={this.props.isFocussed}
-        setFocus={this.props.setFocus}
-        noteState={this.props.noteState}
-        setNoteState={this.props.setNoteState}
+        selctedIndex={this.props.selctedIndex}
       />
     );
   }
@@ -28,4 +25,4 @@ const mapDispatchToProps = dispatch => {
   );
 };
 
-export default connect(null, mapDispatchToProps)(NewNoteContainer);
+export default connect(null, mapDispatchToProps)(MainDisplayContainer);

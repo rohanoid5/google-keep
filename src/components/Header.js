@@ -1,6 +1,6 @@
 import React from 'react';
 import './Header.css';
-import SearchBox from './SearchBox';
+import FilterContainer from '../containers/FilterContainer';
 
 function Header({ setNavbarCollapse }) {
   return (
@@ -12,20 +12,7 @@ function Header({ setNavbarCollapse }) {
         <div className="icon-title">Google Keep</div>
       </div>
       <div className="search-box">
-        <SearchBox
-          suggestions={[
-            'Alligator',
-            'Bask',
-            'Crocodilian',
-            'Death Roll',
-            'Eggs',
-            'Jaws',
-            'Reptile',
-            'Solitary',
-            'Tail',
-            'Wetlands'
-          ]}
-        />
+        <FilterContainer />
       </div>
       <div className="action-area">Action Area</div>
     </header>

@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import SearchBox from '../components/SearchBox';
 
 import { updateNoteTitleFilter } from '../actions/filterAction';
 
 class FilterContainer extends Component {
   render() {
     return (
-      <div style={{ width: '80%' }}>{this.props.children(this.props)}</div>
+      <div style={{ width: '80%' }}>
+        <SearchBox {...this.props} />
+      </div>
     );
   }
 }

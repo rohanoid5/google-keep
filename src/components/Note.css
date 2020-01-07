@@ -1,6 +1,6 @@
 .note {
   width: 100%;
-  padding: 8px;
+  padding: 4px;
   box-sizing: border-box;
   position: relative;
 }
@@ -42,7 +42,7 @@
   border: 1px solid #cccccc80;
   border-radius: 8px;
   padding: 8px;
-  width: 50%;
+  width: 100%;
   position: relative;
 }
 
@@ -63,6 +63,7 @@
 
 .note-add-actions {
   display: flex;
+  justify-content: space-between;
 }
 
 .note-action {
@@ -122,6 +123,9 @@
 @media screen and (min-width: 720px) {
   .note {
     width: 33.3%;
+  }
+  .note-add {
+    width: 50%;
   }
 }
 @media screen and (min-width: 960px) {

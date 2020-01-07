@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Header from './Header';
 import NavBar from './NavBar';
-import MainDisplay from './MainDisplay';
+import MainDisplayContainer from '../containers/MainDisplayContainer';
 
 class App extends Component {
   constructor(props) {
@@ -38,7 +38,7 @@ class App extends Component {
             setSelectedIndex={this.setSelectedIndex}
             isNavbarCollapased={isNavbarCollapased}
           />
-          <MainDisplay selctedIndex={selctedIndex} />
+          <MainDisplayContainer selctedIndex={selctedIndex} />
         </div>
       </div>
     );

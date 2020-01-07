@@ -29,8 +29,12 @@ const mapStateToProps = ({ notes, filter }) => {
     notes: notes.filter(
       note =>
         !note.isArchived &&
-        (note.title.toLowerCase().includes(filter.noteTitleFilter) ||
-          note.body.toLowerCase().includes(filter.noteTitleFilter))
+        (note.title
+          .toLowerCase()
+          .includes(filter.noteTitleFilter.toLowerCase()) ||
+          note.body
+            .toLowerCase()
+            .includes(filter.noteTitleFilter.toLowerCase()))
     )
   };
 };

@@ -1,9 +1,7 @@
-import React, { useRef, useEffect, useState } from 'react';
-import { DEFAULT_STATE } from '../utils/constants';
+import React, { useRef, useEffect } from 'react';
 import autosize from 'autosize';
 
-const NewNote = ({ addNewNote, isFocussed, setFocus }) => {
-  const [state, setState] = useState(DEFAULT_STATE);
+const NewNote = ({ isFocussed, setFocus, noteState, setNoteState, onSave }) => {
   const contentInput = useRef(null);
 
   useEffect(() => {
@@ -14,34 +12,26 @@ const NewNote = ({ addNewNote, isFocussed, setFocus }) => {
   }, []);
 
   const handleChange = e => {
-    setState({
-      ...state,
+    setNoteState({
+      ...noteState,
       [e.target.name]: e.target.value
     });
   };
 
-  const onSave = () => {
-    let { title, body, isStarred, isArchived } = state;
-    if (title !== '' || body !== '') {
-      addNewNote(title, body, '', isStarred, isArchived);
-      setState(DEFAULT_STATE);
-    }
-  };
-
   const handleStar = () => {
-    setState(state => {
+    setNoteState(noteState => {
       return {
-        ...state,
-        isStarred: !state.isStarred
+        ...noteState,
+        isStarred: !noteState.isStarred
       };
     });
   };
 
   const handleArchive = () => {
-    setState(state => {
+    setNoteState(noteState => {
       return {
-        ...state,
-        isArchived: !state.isArchived
+        ...noteState,
+        isArchived: !noteState.isArchived
       };
     });
   };
@@ -49,20 +39,14 @@ const NewNote = ({ addNewNote, isFocussed, setFocus }) => {
   if (isFocussed) {
     return (
       <div className="note-add" onClick={e => e.stopPropagation()}>
-        <div className="note-btns">
-          <button className="note-btn" onClick={onSave}>
-            Save
-          </button>
-          <button className="note-btn">Close</button>
-        </div>
         <div className="star-icon icon" onClick={handleStar}>
           <i className="material-icons">
-            {state.isStarred ? 'star' : 'star_border'}
+            {noteState.isStarred ? 'star' : 'star_border'}
           </i>
         </div>
         <input
           onChange={handleChange}
-          value={state.title}
+          value={noteState.title}
           className="note-title-input"
           type="text"
           name="title"
@@ -70,7 +54,7 @@ const NewNote = ({ addNewNote, isFocussed, setFocus }) => {
         />
         <textarea
           onChange={handleChange}
-          value={state.body}
+          value={noteState.body}
           name="body"
           ref={contentInput}
           rows={1}
@@ -79,20 +63,29 @@ const NewNote = ({ addNewNote, isFocussed, setFocus }) => {
           placeholder="Take a note..."
         ></textarea>
         <div className="note-add-actions">
-          <div className="icon" onClick={handleArchive}>
-            <i
-              className={
-                state.isArchived ? 'material-icons' : 'material-icons-outlined'
-              }
-            >
-              archive
-            </i>
+          <div style={{ display: 'flex' }}>
+            <div className="icon" onClick={handleArchive}>
+              <i
+                className={
+                  noteState.isArchived
+                    ? 'material-icons'
+                    : 'material-icons-outlined'
+                }
+              >
+                archive
+              </i>
+            </div>
+            <div className="icon">
+              <i className="material-icons">add_photo_alternate</i>
+            </div>
+            <div className="icon">
+              <i className="material-icons">color_lens</i>
+            </div>
           </div>
-          <div className="icon">
-            <i className="material-icons">add_photo_alternate</i>
-          </div>
-          <div className="icon">
-            <i className="material-icons">color_lens</i>
+          <div style={{ display: 'flex' }}>
+            <button className="note-btn" onClick={onSave}>
+              Close
+            </button>
           </div>
         </div>
       </div>
