@@ -30,6 +30,21 @@
   min-height: 28px;
 }
 
+.note-image {
+  display: block;
+  margin: 8px auto;
+  width: 95%;
+}
+
+.note-image-container {
+  position: relative;
+}
+
+.note-image-remove {
+  position: absolute;
+  right: 16px;
+}
+
 .note-add-container {
   padding: 16px;
   display: flex;

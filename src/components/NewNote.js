@@ -5,6 +5,7 @@ import { DARK_THEME } from '../utils/constants';
 
 const NewNote = ({ isFocussed, setFocus, noteState, setNoteState, onSave }) => {
   const contentInput = useRef(null);
+  const imageUploadButton = useRef(null);
 
   useEffect(() => {
     if (contentInput && contentInput.current) {
@@ -38,11 +39,22 @@ const NewNote = ({ isFocussed, setFocus, noteState, setNoteState, onSave }) => {
     });
   };
 
+  const handleImageUpload = e => {
+    e.stopPropagation();
+    e.preventDefault();
+    const file = e.target.files[0];
+    console.log(file);
+  };
+
   if (isFocussed) {
     return (
       <ThemeContext.Consumer>
         {({ theme }) => (
-          <div className="note-add" onClick={e => e.stopPropagation()}>
+          <div
+            style={{ position: 'relative' }}
+            className="note-add"
+            onClick={e => e.stopPropagation()}
+          >
             <div
               className={
                 theme === DARK_THEME
@@ -81,6 +93,32 @@ const NewNote = ({ isFocussed, setFocus, noteState, setNoteState, onSave }) => {
               type="text"
               placeholder="Take a note..."
             ></textarea>
+            {noteState.image !== '' && (
+              <div className="note-image-container">
+                <div
+                  className={
+                    theme === DARK_THEME
+                      ? 'icon note-image-remove'
+                      : 'icon icon-light note-image-remove'
+                  }
+                >
+                  <i
+                    className={
+                      noteState.isArchived
+                        ? 'material-icons'
+                        : 'material-icons-outlined'
+                    }
+                  >
+                    clear
+                  </i>
+                </div>
+                <img
+                  className="note-image"
+                  alt="uploaded_img"
+                  src="https://images.pexels.com/photos/1226302/pexels-photo-1226302.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+                />
+              </div>
+            )}
             <div className="note-add-actions">
               <div style={{ display: 'flex' }}>
                 <div
@@ -97,8 +135,17 @@ const NewNote = ({ isFocussed, setFocus, noteState, setNoteState, onSave }) => {
                     archive
                   </i>
                 </div>
+                <input
+                  type="file"
+                  id="file"
+                  ref={imageUploadButton}
+                  style={{ display: 'none' }}
+                  onChange={handleImageUpload}
+                />
                 <div
+                  type="file"
                   className={theme === DARK_THEME ? 'icon' : 'icon icon-light'}
+                  onClick={() => imageUploadButton.current.click()}
                 >
                   <i className="material-icons">add_photo_alternate</i>
                 </div>
