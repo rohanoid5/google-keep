@@ -14,11 +14,13 @@
   margin: 8px;
   font-size: 18px;
   font-weight: 600;
+  overflow-wrap: break-word;
 }
 
 .note-content {
   margin: 8px;
   font-size: 14px;
+  overflow-wrap: break-word;
 }
 
 .note-actions {
@@ -213,6 +215,10 @@
   -moz-transition: -moz-transform 0.3s ease-out;
   -o-transition: -o-transform 0.3s ease-out;
   transition: transform 0.3s ease-out;
+}
+
+.modal-dialog-light {
+  background-color: #f5f5f5;
 }
 
 .modal-content {
