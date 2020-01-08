@@ -1,11 +1,15 @@
 .navbar {
   flex: 2;
   padding: 16px 0px;
-  display: none;
+  transform: translateX(0px);
+  transition: width 0.1s ease, transform 0.25s ease-in-out 0.1s;
 }
 
 .navbar-hidden {
-  display: none;
+  transform: translateX(-300px);
+  transition: transform 0.25s ease-in-out, width 0.2s ease 0.25s;
+  width: 0px;
+  flex: 0;
 }
 
 .list-item {
@@ -28,12 +32,8 @@
   font-size: 16px;
 }
 
-@media screen and (min-width: 720px) {
+@media screen and (max-width: 775px) {
   .navbar {
-    display: block;
-  }
-
-  .navbar-hidden {
-    display: none;
+    position: fixed;
   }
 }

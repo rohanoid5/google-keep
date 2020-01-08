@@ -9,20 +9,22 @@ const SearchBox = ({ updateFilter, value }) => {
   const [filterValue, setFilterValue] = useState(value);
 
   const handleFilterChange = e => {
-    updateFilter(e.currentTarget.value);
     setFilterValue(e.currentTarget.value);
   };
 
   useEffect(() => {
     localforage.getItem('filter', filterValue).then(res => {
-      setFilterValue(res);
-      updateFilter(res);
+      if (res) {
+        setFilterValue(res);
+        updateFilter(res);
+      }
     });
   }, []);
 
   useEffect(() => {
+    updateFilter(filterValue);
     localforage.setItem('filter', filterValue);
-  }, [filterValue]);
+  }, [filterValue, updateFilter]);
 
   return (
     <ThemeContext.Consumer>

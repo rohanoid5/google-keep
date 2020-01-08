@@ -27,7 +27,10 @@ const Notes = ({ notes, onRemove, onArchive, onUpdate, onStar }) => {
   }, [modalVisibility, selectedNote]);
 
   useEffect(() => {
-    if (notes.filter(item => item.isStarred).length > 0) {
+    if (
+      notes.filter(item => item.isStarred).length > 0 &&
+      notes.filter(item => !item.isStarred).length > 0
+    ) {
       setTagVisibility(true);
     } else {
       setTagVisibility(false);
