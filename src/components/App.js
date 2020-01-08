@@ -24,10 +24,13 @@ class App extends Component {
       };
     });
 
-  setSelectedIndex = index =>
-    this.setState({
+  setSelectedIndex = index => {
+    this.setState(({ isNavbarCollapased }) => ({
+      isNavbarCollapased:
+        window.innerWidth < 775 ? !isNavbarCollapased : isNavbarCollapased,
       selctedIndex: index
-    });
+    }));
+  };
 
   toggleTheme = () =>
     this.setState(({ theme }) => ({
@@ -47,6 +50,7 @@ class App extends Component {
           <div style={{ backgroundColor: '#BBB', height: '1px' }}></div>
           <div className="container">
             <NavBar
+              theme={theme}
               selctedIndex={selctedIndex}
               setSelectedIndex={this.setSelectedIndex}
               isNavbarCollapased={isNavbarCollapased}

@@ -20,7 +20,7 @@
 .list-item-active,
 .list-item:hover {
   background-color: #e67b7b;
-  border-radius: 0px 10px 10px 0px;
+  border-radius: 0px 30px 30px 0px;
 }
 
 .list-icon {
@@ -34,6 +34,15 @@
 
 @media screen and (max-width: 775px) {
   .navbar {
-    position: fixed;
+    position: absolute;
+    top: 0px;
+    width: 300px;
+    background-color: #333842;
+    z-index: 10;
+    height: 90vh;
+  }
+
+  .navbar-light {
+    background-color: #f5f5f5;
   }
 }

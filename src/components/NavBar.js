@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './NavBar.css';
+import { DARK_THEME, LIGHT_THEME } from '../utils/constants';
 
 const MAIN_LIST = [
   {
@@ -12,7 +13,12 @@ const MAIN_LIST = [
   }
 ];
 
-const NavBar = ({ isNavbarCollapased, selctedIndex, setSelectedIndex }) => {
+const NavBar = ({
+  isNavbarCollapased,
+  selctedIndex,
+  setSelectedIndex,
+  theme
+}) => {
   const renderListItem = MAIN_LIST.map(({ icon, title }, index) => {
     return (
       <div
@@ -28,8 +34,19 @@ const NavBar = ({ isNavbarCollapased, selctedIndex, setSelectedIndex }) => {
     );
   });
 
+  let className = '';
+  if (isNavbarCollapased) {
+    className = 'navbar navbar-hidden';
+  } else {
+    className = 'navbar';
+  }
+
+  if (theme === LIGHT_THEME) {
+    className += ' navbar-light';
+  }
+
   return (
-    <nav className={isNavbarCollapased ? 'navbar navbar-hidden' : 'navbar'}>
+    <nav className={className}>
       {renderListItem}
       <div style={{ backgroundColor: '#BBB', height: '1px' }}></div>
     </nav>
