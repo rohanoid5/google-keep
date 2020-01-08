@@ -3,6 +3,17 @@
   padding: 2px 4px;
   height: 48px;
   font-size: 16px;
+  color: inherit;
+}
+
+.search-input::placeholder {
+  color: #cccccc;
+  font-weight: bold;
+}
+
+.search-input-light::placeholder {
+  color: #414141;
+  font-weight: bold;
 }
 
 .search-component {

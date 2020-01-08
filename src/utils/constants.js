@@ -18,3 +18,6 @@ export const DEFAULT_STATE = {
   isArchived: false,
   isStarred: false
 };
+
+export const LIGHT_THEME = 'LIGHT_THEME';
+export const DARK_THEME = 'DARK_THEME';

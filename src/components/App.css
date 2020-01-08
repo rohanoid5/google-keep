@@ -19,11 +19,6 @@
   pointer-events: none;
 }
 
-::placeholder {
-  color: #cccccc;
-  font-weight: bold;
-}
-
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;

@@ -32,4 +32,8 @@
   .navbar {
     display: block;
   }
+
+  .navbar-hidden {
+    display: none;
+  }
 }

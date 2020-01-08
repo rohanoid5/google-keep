@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import './Note.css';
+import ThemeContext from '../contexts/ThemeContext';
+import { DARK_THEME } from '../utils/constants';
 
 const Note = ({
   note,
@@ -33,55 +35,92 @@ const Note = ({
   };
 
   return (
-    <div className="note">
-      <div
-        className="note-inner"
-        onMouseOver={() => setShowActions(true)}
-        onMouseEnter={() => setShowActions(true)}
-        onMouseLeave={() => setShowActions(false)}
-        onClick={onNoteSelect}
-      >
-        {showActions && (
-          <div className="star-icon-action icon" onClick={handleStar}>
-            <i className="material-icons md-18">
-              {note.isStarred ? 'star' : 'star_border'}
-            </i>
-          </div>
-        )}
-        <div className="note-title">{note.title}</div>
-        <div className="note-content">{note.body}</div>
-        <div className="note-actions">
-          {showActions && (
-            <div className="note-action icon" onClick={handleArchive}>
-              <i
+    <ThemeContext.Consumer>
+      {({ theme }) => (
+        <div className="note">
+          <div
+            className="note-inner"
+            onMouseOver={() => setShowActions(true)}
+            onMouseEnter={() => setShowActions(true)}
+            onMouseLeave={() => setShowActions(false)}
+            onClick={onNoteSelect}
+          >
+            {showActions && (
+              <div
                 className={
-                  note.isArchived
-                    ? 'material-icons md-18'
-                    : 'material-icons-outlined  md-18'
+                  theme === DARK_THEME
+                    ? 'star-icon-action icon'
+                    : 'star-icon-action icon icon-light'
                 }
+                onClick={handleStar}
               >
-                archive
-              </i>
+                <i className="material-icons md-18">
+                  {note.isStarred ? 'star' : 'star_border'}
+                </i>
+              </div>
+            )}
+            <div className="note-title">{note.title}</div>
+            <div className="note-content">{note.body}</div>
+            <div className="note-actions">
+              {showActions && (
+                <div
+                  className={
+                    theme === DARK_THEME
+                      ? 'note-action icon'
+                      : 'note-action icon icon-light'
+                  }
+                  onClick={handleArchive}
+                >
+                  <i
+                    className={
+                      note.isArchived
+                        ? 'material-icons md-18'
+                        : 'material-icons-outlined  md-18'
+                    }
+                  >
+                    archive
+                  </i>
+                </div>
+              )}
+              {showActions && (
+                <div
+                  className={
+                    theme === DARK_THEME
+                      ? 'note-action icon'
+                      : 'note-action icon icon-light'
+                  }
+                >
+                  <i className="material-icons md-18">add_photo_alternate</i>
+                </div>
+              )}
+              {showActions && (
+                <div
+                  className={
+                    theme === DARK_THEME
+                      ? 'note-action icon'
+                      : 'note-action icon icon-light'
+                  }
+                >
+                  <i className="material-icons md-18">color_lens</i>
+                </div>
+              )}
+              {showActions && (
+                <div
+                  className={
+                    theme === DARK_THEME
+                      ? 'note-action icon'
+                      : 'note-action icon icon-light'
+                  }
+                  onClick={handleRemove}
+                >
+                  <i className="material-icons md-18">delete</i>
+                </div>
+              )}
             </div>
-          )}
-          {showActions && (
-            <div className="note-action icon">
-              <i className="material-icons md-18">add_photo_alternate</i>
-            </div>
-          )}
-          {showActions && (
-            <div className="note-action icon">
-              <i className="material-icons md-18">color_lens</i>
-            </div>
-          )}
-          {showActions && (
-            <div className="note-action icon" onClick={handleRemove}>
-              <i className="material-icons md-18">delete</i>
-            </div>
-          )}
+          </div>
         </div>
-      </div>
-    </div>
+      )}
+    </ThemeContext.Consumer>
   );
 };
 

@@ -29,6 +29,8 @@
 
 .action-area {
   flex: 3;
+  display: flex;
+  justify-content: flex-end;
 }
 
 @media screen and (min-width: 720px) {
