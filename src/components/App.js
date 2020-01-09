@@ -10,7 +10,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isNavbarCollapased: false,
+      isNavbarCollapased: window.innerWidth < 775 ? true : false,
       selctedIndex: 0,
       theme: DARK_THEME,
       toggleTheme: this.toggleTheme
