@@ -42,7 +42,10 @@ const ColorPicker = ({
             border: '2px solid #bbbbbb',
             opacity: index === selectedIndex ? 0.4 : 1
           }}
-          onClick={() => handleBackgroundColor(index, color)}
+          onClick={e => {
+            e.stopPropagation();
+            handleBackgroundColor(index, color);
+          }}
         >
           {index === selectedIndex && (
             <i style={{ alignSelf: 'center' }} className="material-icons">

@@ -18,9 +18,12 @@ const Note = ({
   setModalVisibility,
   setSelectedNote
 }) => {
+  const colorIndex = DARK_COLORS.indexOf(note.backgroundColor);
   const [showActions, setShowActions] = useState(false);
   const [colorPickerVisibility, setColorPickerVisibility] = useState(false);
-  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [selectedIndex, setSelectedIndex] = useState(
+    colorIndex === -1 ? 0 : colorIndex
+  );
 
   const onNoteSelect = e => {
     e.stopPropagation();
@@ -56,15 +59,6 @@ const Note = ({
     <ThemeContext.Consumer>
       {({ theme }) => (
         <div className="note">
-          {colorPickerVisibility && (
-            <ColorPicker
-              colors={theme === DARK_THEME ? DARK_COLORS : LIGHT_COLORS}
-              selectedIndex={selectedIndex}
-              handleBackgroundColor={handleBackgroundColor}
-              setColorPickerVisibility={setColorPickerVisibility}
-              position={{ key: 'right', value: '16px' }}
-            />
-          )}
           <div
             className="note-inner"
             onMouseOver={() => setShowActions(true)}
@@ -72,6 +66,7 @@ const Note = ({
             onMouseLeave={() => setShowActions(false)}
             onClick={onNoteSelect}
             style={{
+              position: 'relative',
               backgroundColor: `${note.backgroundColor}`,
               color:
                 theme === LIGHT_THEME && note.backgroundColor === ''
@@ -79,6 +74,15 @@ const Note = ({
                   : '#eeeeee'
             }}
           >
+            {colorPickerVisibility && (
+              <ColorPicker
+                colors={theme === DARK_THEME ? DARK_COLORS : LIGHT_COLORS}
+                selectedIndex={selectedIndex}
+                handleBackgroundColor={handleBackgroundColor}
+                setColorPickerVisibility={setColorPickerVisibility}
+                position={{ key: 'right', value: '16px' }}
+              />
+            )}
             {showActions && (
               <div
                 className={

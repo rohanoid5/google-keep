@@ -88,6 +88,7 @@ const Notes = ({ notes, onRemove, onArchive, onUpdate, onStar }) => {
                     onRemove={onRemove}
                     onArchive={onArchive}
                     onStar={onStar}
+                    onUpdate={onUpdate}
                     setModalVisibility={setModalVisibility}
                     setSelectedNote={setSelectedNote}
                   />
