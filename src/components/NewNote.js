@@ -85,6 +85,7 @@ const NewNote = ({ isFocussed, setFocus, noteState, setNoteState, onSave }) => {
                 selectedIndex={selectedIndex}
                 handleBackgroundColor={handleBackgroundColor}
                 setColorPickerVisibility={setColorPickerVisibility}
+                position={{ key: 'left', value: '16px' }}
               />
             )}
             <div

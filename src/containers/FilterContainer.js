@@ -15,7 +15,6 @@ class FilterContainer extends Component {
 }
 
 const mapStateToProps = ({ notes, filter }) => {
-  console.log(filter.noteTitleFilter);
   return {
     notes: notes.filter(
       note =>

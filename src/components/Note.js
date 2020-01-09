@@ -1,17 +1,26 @@
 import React, { useState } from 'react';
 import './Note.css';
 import ThemeContext from '../contexts/ThemeContext';
-import { DARK_THEME, LIGHT_THEME } from '../utils/constants';
+import {
+  DARK_THEME,
+  LIGHT_THEME,
+  DARK_COLORS,
+  LIGHT_COLORS
+} from '../utils/constants';
+import ColorPicker from './ColorPicker';
 
 const Note = ({
   note,
   onRemove,
   onArchive,
   onStar,
+  onUpdate,
   setModalVisibility,
   setSelectedNote
 }) => {
   const [showActions, setShowActions] = useState(false);
+  const [colorPickerVisibility, setColorPickerVisibility] = useState(false);
+  const [selectedIndex, setSelectedIndex] = useState(0);
 
   const onNoteSelect = e => {
     e.stopPropagation();
@@ -34,10 +43,28 @@ const Note = ({
     onStar(note);
   };
 
+  const handleBackgroundColor = (index, color) => {
+    setSelectedIndex(index);
+    let updatedNote = {
+      ...note,
+      backgroundColor: color
+    };
+    onUpdate(updatedNote);
+  };
+
   return (
     <ThemeContext.Consumer>
       {({ theme }) => (
         <div className="note">
+          {colorPickerVisibility && (
+            <ColorPicker
+              colors={theme === DARK_THEME ? DARK_COLORS : LIGHT_COLORS}
+              selectedIndex={selectedIndex}
+              handleBackgroundColor={handleBackgroundColor}
+              setColorPickerVisibility={setColorPickerVisibility}
+              position={{ key: 'right', value: '16px' }}
+            />
+          )}
           <div
             className="note-inner"
             onMouseOver={() => setShowActions(true)}
@@ -107,6 +134,8 @@ const Note = ({
                       ? 'note-action icon'
                       : 'note-action icon icon-light'
                   }
+                  onMouseOver={() => setColorPickerVisibility(true)}
+                  onMouseOut={() => setColorPickerVisibility(false)}
                 >
                   <i className="material-icons md-18">color_lens</i>
                 </div>

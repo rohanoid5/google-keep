@@ -4,7 +4,8 @@ const ColorPicker = ({
   colors,
   selectedIndex,
   handleBackgroundColor,
-  setColorPickerVisibility
+  setColorPickerVisibility,
+  position
 }) => {
   return (
     <div
@@ -13,6 +14,7 @@ const ColorPicker = ({
                   0 1px 5px 0 rgba(0, 0, 0, 0.12)`,
         backgroundColor: '#272727',
         position: 'absolute',
+        [position.key]: position.value,
         bottom: '38px',
         height: 90,
         width: 120,
@@ -20,7 +22,8 @@ const ColorPicker = ({
         flexWrap: 'wrap',
         padding: 8,
         justifyContent: 'space-between',
-        alignItems: 'center'
+        alignItems: 'center',
+        zIndex: 99
       }}
       onMouseEnter={() => setColorPickerVisibility(true)}
       onMouseLeave={() => setColorPickerVisibility(false)}
