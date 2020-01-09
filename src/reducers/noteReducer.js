@@ -14,8 +14,19 @@ export default (state = {}, action) => {
   }
 
   if (action.type === ADD_NEW_NOTE) {
-    const { id, isArchived, title, body, image, isStarred } = action.note;
-    return [...state, { id, isArchived, title, body, image, isStarred }];
+    const {
+      id,
+      isArchived,
+      title,
+      body,
+      image,
+      isStarred,
+      backgroundColor
+    } = action.note;
+    return [
+      ...state,
+      { id, isArchived, title, body, image, isStarred, backgroundColor }
+    ];
   }
 
   if (action.type === REMOVE_NOTE) {

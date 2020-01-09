@@ -1,11 +1,19 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import autosize from 'autosize';
 import ThemeContext from '../contexts/ThemeContext';
-import { DARK_THEME } from '../utils/constants';
+import {
+  DARK_THEME,
+  DARK_COLORS,
+  LIGHT_COLORS,
+  LIGHT_THEME
+} from '../utils/constants';
+import ColorPicker from './ColorPicker';
 
 const NewNote = ({ isFocussed, setFocus, noteState, setNoteState, onSave }) => {
   const contentInput = useRef(null);
   const imageUploadButton = useRef(null);
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [colorPickerVisibility, setColorPickerVisibility] = useState(false);
 
   useEffect(() => {
     if (contentInput && contentInput.current) {
@@ -46,20 +54,44 @@ const NewNote = ({ isFocussed, setFocus, noteState, setNoteState, onSave }) => {
     console.log(file);
   };
 
+  const handleBackgroundColor = (index, color) => {
+    setSelectedIndex(index);
+    setNoteState(noteState => {
+      return {
+        ...noteState,
+        backgroundColor: color
+      };
+    });
+  };
+
   if (isFocussed) {
     return (
       <ThemeContext.Consumer>
         {({ theme }) => (
           <div
-            style={{ position: 'relative' }}
             className="note-add"
+            style={{
+              position: 'relative',
+              backgroundColor:
+                theme === DARK_THEME
+                  ? `${DARK_COLORS[selectedIndex]}`
+                  : `${LIGHT_COLORS[selectedIndex]}`
+            }}
             onClick={e => e.stopPropagation()}
           >
+            {colorPickerVisibility && (
+              <ColorPicker
+                colors={theme === DARK_THEME ? DARK_COLORS : LIGHT_COLORS}
+                selectedIndex={selectedIndex}
+                handleBackgroundColor={handleBackgroundColor}
+                setColorPickerVisibility={setColorPickerVisibility}
+              />
+            )}
             <div
               className={
-                theme === DARK_THEME
-                  ? 'star-icon icon'
-                  : 'star-icon icon icon-light'
+                theme === LIGHT_THEME && selectedIndex === 0
+                  ? 'star-icon icon icon-light'
+                  : 'star-icon icon material-icon-white'
               }
               onClick={handleStar}
             >
@@ -71,9 +103,9 @@ const NewNote = ({ isFocussed, setFocus, noteState, setNoteState, onSave }) => {
               onChange={handleChange}
               value={noteState.title}
               className={
-                theme === DARK_THEME
-                  ? 'note-title-input'
-                  : 'note-title-input note-title-input-light'
+                theme === LIGHT_THEME && selectedIndex === 0
+                  ? 'note-title-input note-title-input-light'
+                  : 'note-title-input'
               }
               type="text"
               name="title"
@@ -86,9 +118,9 @@ const NewNote = ({ isFocussed, setFocus, noteState, setNoteState, onSave }) => {
               ref={contentInput}
               rows={1}
               className={
-                theme === DARK_THEME
-                  ? 'note-content-input'
-                  : 'note-content-input note-content-input-light'
+                theme === LIGHT_THEME && selectedIndex === 0
+                  ? 'note-content-input note-content-input-light'
+                  : 'note-content-input'
               }
               type="text"
               placeholder="Take a note..."
@@ -122,7 +154,11 @@ const NewNote = ({ isFocussed, setFocus, noteState, setNoteState, onSave }) => {
             <div className="note-add-actions">
               <div style={{ display: 'flex' }}>
                 <div
-                  className={theme === DARK_THEME ? 'icon' : 'icon icon-light'}
+                  className={
+                    theme === LIGHT_THEME && selectedIndex === 0
+                      ? 'icon  icon-light'
+                      : 'icon material-icon-white'
+                  }
                   onClick={handleArchive}
                 >
                   <i
@@ -144,13 +180,23 @@ const NewNote = ({ isFocussed, setFocus, noteState, setNoteState, onSave }) => {
                 />
                 <div
                   type="file"
-                  className={theme === DARK_THEME ? 'icon' : 'icon icon-light'}
+                  className={
+                    theme === LIGHT_THEME && selectedIndex === 0
+                      ? 'icon  icon-light'
+                      : 'icon material-icon-white'
+                  }
                   onClick={() => imageUploadButton.current.click()}
                 >
                   <i className="material-icons">add_photo_alternate</i>
                 </div>
                 <div
-                  className={theme === DARK_THEME ? 'icon' : 'icon icon-light'}
+                  className={
+                    theme === LIGHT_THEME && selectedIndex === 0
+                      ? 'icon  icon-light'
+                      : 'icon material-icon-white'
+                  }
+                  onMouseOver={() => setColorPickerVisibility(true)}
+                  onMouseOut={() => setColorPickerVisibility(false)}
                 >
                   <i className="material-icons">color_lens</i>
                 </div>
@@ -158,11 +204,14 @@ const NewNote = ({ isFocussed, setFocus, noteState, setNoteState, onSave }) => {
               <div style={{ display: 'flex' }}>
                 <button
                   className={
-                    theme === DARK_THEME
-                      ? 'note-btn'
-                      : 'note-btn note-btn-light'
+                    theme === LIGHT_THEME && selectedIndex === 0
+                      ? 'note-btn note-btn-light'
+                      : 'note-btn'
                   }
-                  onClick={onSave}
+                  onClick={() => {
+                    onSave();
+                    setSelectedIndex(0);
+                  }}
                 >
                   Close
                 </button>

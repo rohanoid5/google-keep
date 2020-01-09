@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Note.css';
 import ThemeContext from '../contexts/ThemeContext';
-import { DARK_THEME } from '../utils/constants';
+import { DARK_THEME, LIGHT_THEME } from '../utils/constants';
 
 const Note = ({
   note,
@@ -44,6 +44,13 @@ const Note = ({
             onMouseEnter={() => setShowActions(true)}
             onMouseLeave={() => setShowActions(false)}
             onClick={onNoteSelect}
+            style={{
+              backgroundColor: `${note.backgroundColor}`,
+              color:
+                theme === LIGHT_THEME && note.backgroundColor === ''
+                  ? '#000000'
+                  : '#eeeeee'
+            }}
           >
             {showActions && (
               <div

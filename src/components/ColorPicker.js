@@ -1,6 +1,11 @@
 import React from 'react';
 
-const ColorPicker = ({ colors, selectedIndex }) => {
+const ColorPicker = ({
+  colors,
+  selectedIndex,
+  handleBackgroundColor,
+  setColorPickerVisibility
+}) => {
   return (
     <div
       style={{
@@ -10,27 +15,37 @@ const ColorPicker = ({ colors, selectedIndex }) => {
         position: 'absolute',
         bottom: '38px',
         height: 90,
-        width: 100,
+        width: 120,
         display: 'flex',
         flexWrap: 'wrap',
         padding: 8,
         justifyContent: 'space-between',
         alignItems: 'center'
       }}
+      onMouseEnter={() => setColorPickerVisibility(true)}
+      onMouseLeave={() => setColorPickerVisibility(false)}
     >
       {colors.map((color, index) => (
         <div
           key={color}
           style={{
+            display: 'flex',
+            justifyContent: 'center',
             width: 30,
             height: 30,
             backgroundColor: `${color}`,
             borderRadius: 99,
             margin: '2px 0px',
+            border: '2px solid #bbbbbb',
             opacity: index === selectedIndex ? 0.4 : 1
           }}
+          onClick={() => handleBackgroundColor(index, color)}
         >
-          {''}
+          {index === selectedIndex && (
+            <i style={{ alignSelf: 'center' }} className="material-icons">
+              check
+            </i>
+          )}
         </div>
       ))}
     </div>

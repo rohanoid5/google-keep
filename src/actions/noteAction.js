@@ -24,6 +24,7 @@ export const addNewNote = (
   title,
   body,
   image = '',
+  backgroundColor = '',
   isStarred = false,
   isArchived = false
 ) => {
@@ -32,7 +33,8 @@ export const addNewNote = (
     isArchived,
     title,
     body,
-    image
+    image,
+    backgroundColor
   };
 
   return dispatch => {
