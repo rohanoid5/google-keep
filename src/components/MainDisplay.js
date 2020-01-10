@@ -38,15 +38,17 @@ const MainDisplay = ({ selctedIndex, addNewNote }) => {
 
   return (
     <main className="main" onClick={onSave}>
-      <div className="note-add-container">
-        <NewNote
-          isFocussed={isFocussed}
-          setFocus={setFocus}
-          noteState={noteState}
-          setNoteState={setNoteState}
-          onSave={onSave}
-        />
-      </div>
+      {selctedIndex === 0 && (
+        <div className="note-add-container">
+          <NewNote
+            isFocussed={isFocussed}
+            setFocus={setFocus}
+            noteState={noteState}
+            setNoteState={setNoteState}
+            onSave={onSave}
+          />
+        </div>
+      )}
       <div className="notes-container">{renderContainer()}</div>
     </main>
   );
