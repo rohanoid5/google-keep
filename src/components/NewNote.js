@@ -226,6 +226,7 @@ const NewNote = ({ isFocussed, setFocus, noteState, setNoteState, onSave }) => {
                   onClick={() => {
                     onSave();
                     setSelectedIndex(0);
+                    setImageInputVisibility(false);
                   }}
                 >
                   Close
@@ -251,6 +252,10 @@ const NewNote = ({ isFocussed, setFocus, noteState, setNoteState, onSave }) => {
             <div style={{ flex: '1', display: 'flex' }}>
               <div
                 className={theme === DARK_THEME ? 'icon' : 'icon icon-light'}
+                onClick={() => {
+                  setFocus(true);
+                  setImageInputVisibility(true);
+                }}
               >
                 <i className="material-icons">add_photo_alternate</i>
               </div>
