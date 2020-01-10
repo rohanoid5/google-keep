@@ -2,7 +2,7 @@ import React from 'react';
 import './Header.css';
 import FilterContainer from '../containers/FilterContainer';
 import ThemeContext from '../contexts/ThemeContext';
-import { DARK_THEME } from '../utils/constants';
+import { DARK_THEME } from '../constants/ThemeConstants';
 
 function Header({ setNavbarCollapse }) {
   return (

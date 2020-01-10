@@ -6,7 +6,7 @@ import {
   LIGHT_THEME,
   DARK_COLORS,
   LIGHT_COLORS
-} from '../utils/constants';
+} from '../constants/ThemeConstants';
 import ColorPicker from './ColorPicker';
 
 const Note = ({

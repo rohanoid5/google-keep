@@ -1,6 +1,6 @@
 import React from 'react';
 import './NavBar.css';
-import { DARK_THEME, LIGHT_THEME } from '../utils/constants';
+import { LIGHT_THEME } from '../constants/ThemeConstants';
 
 const MAIN_LIST = [
   {

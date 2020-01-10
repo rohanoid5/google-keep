@@ -5,9 +5,9 @@ import {
   REMOVE_NOTE,
   TOGGLE_NOTE,
   UPDATE_ALL_AS_ARCHIVE
-} from '../utils/constants';
+} from '../constants/ActionTypes';
 
-import API from '../apiCaller';
+import API from '../utils/apiCaller';
 
 export const getAllNotes = () => {
   return dispatch => {

@@ -2,7 +2,7 @@ import React, { useRef, useEffect, useState } from 'react';
 import localforage from 'localforage';
 import './SearchBox.css';
 import ThemeContext from '../contexts/ThemeContext';
-import { DARK_THEME } from '../utils/constants';
+import { DARK_THEME } from '../constants/ThemeConstants';
 
 const SearchBox = ({ updateFilter, value }) => {
   const searchInput = useRef(null);

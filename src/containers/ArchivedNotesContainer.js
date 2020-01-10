@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import Notes from '../components/Notes';
 
@@ -9,20 +9,17 @@ import {
   starNote
 } from '../actions/noteAction';
 
-class NotesContainer extends Component {
-  render() {
-    const { notes, onRemove, onArchive, onUpdate, onStar } = this.props;
-    return (
-      <Notes
-        notes={notes}
-        onRemove={onRemove}
-        onArchive={onArchive}
-        onUpdate={onUpdate}
-        onStar={onStar}
-      />
-    );
-  }
-}
+const NotesContainer = ({ notes, onRemove, onArchive, onUpdate, onStar }) => {
+  return (
+    <Notes
+      notes={notes}
+      onRemove={onRemove}
+      onArchive={onArchive}
+      onUpdate={onUpdate}
+      onStar={onStar}
+    />
+  );
+};
 
 const mapStateToProps = ({ notes, filter }) => {
   return {

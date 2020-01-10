@@ -1,18 +1,16 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import SearchBox from '../components/SearchBox';
 
 import { updateNoteTitleFilter } from '../actions/filterAction';
 
-class FilterContainer extends Component {
-  render() {
-    return (
-      <div style={{ width: '80%' }}>
-        <SearchBox {...this.props} />
-      </div>
-    );
-  }
-}
+const FilterContainer = props => {
+  return (
+    <div style={{ width: '80%' }}>
+      <SearchBox {...props} />
+    </div>
+  );
+};
 
 const mapStateToProps = ({ notes, filter }) => {
   return {

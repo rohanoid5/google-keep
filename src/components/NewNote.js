@@ -6,7 +6,7 @@ import {
   DARK_COLORS,
   LIGHT_COLORS,
   LIGHT_THEME
-} from '../utils/constants';
+} from '../constants/ThemeConstants';
 import ColorPicker from './ColorPicker';
 
 const NewNote = ({ isFocussed, setFocus, noteState, setNoteState, onSave }) => {

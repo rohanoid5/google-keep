@@ -4,7 +4,7 @@ import Header from './Header';
 import NavBar from './NavBar';
 import MainDisplayContainer from '../containers/MainDisplayContainer';
 import ThemeContext from '../contexts/ThemeContext';
-import { LIGHT_THEME, DARK_THEME } from '../utils/constants';
+import { LIGHT_THEME, DARK_THEME } from '../constants/ThemeConstants';
 
 class App extends Component {
   constructor(props) {

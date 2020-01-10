@@ -1,7 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import autosize from 'autosize';
 import localforage from 'localforage';
-import { DEFAULT_STATE, DARK_THEME } from '../utils/constants';
+import { DEFAULT_STATE } from '../constants/DefaultStates';
+import { DARK_THEME } from '../constants/ThemeConstants';
 import Note from './Note';
 import ThemeContext from '../contexts/ThemeContext';
 

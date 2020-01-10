@@ -6,7 +6,7 @@ import {
   TOGGLE_NOTE,
   UPDATE_ALL_AS_ARCHIVE,
   UPDATE_ALL_AS_UNARCHIVE
-} from '../utils/constants';
+} from '../constants/ActionTypes';
 
 export default (state = {}, action) => {
   if (action.type === UPDATE_ALL_NOTES) {

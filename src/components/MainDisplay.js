@@ -3,7 +3,7 @@ import './MainDisplay.css';
 import NotesContainer from '../containers/NotesContainer';
 import ArchivedNotesContainer from '../containers/ArchivedNotesContainer';
 import NewNote from '../components/NewNote';
-import { DEFAULT_STATE } from '../utils/constants';
+import { DEFAULT_STATE } from '../constants/DefaultStates';
 
 const MainDisplay = ({ selctedIndex, addNewNote }) => {
   const [isFocussed, setFocus] = useState(false);
