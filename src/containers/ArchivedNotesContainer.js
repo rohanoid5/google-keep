@@ -6,8 +6,16 @@ import { toggleNote, removeNote } from '../actions/noteAction';
 
 class NotesContainer extends Component {
   render() {
-    const { notes, onRemove, onArchive } = this.props;
-    return <Notes notes={notes} onRemove={onRemove} onArchive={onArchive} />;
+    const { notes, onRemove, onArchive, onUpdate, onStar } = this.props;
+    return (
+      <Notes
+        notes={notes}
+        onRemove={onRemove}
+        onArchive={onArchive}
+        onUpdate={onUpdate}
+        onStar={onStar}
+      />
+    );
   }
 }
 

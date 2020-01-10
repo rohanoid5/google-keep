@@ -9,7 +9,9 @@ const Notes = ({ notes, onRemove, onArchive, onUpdate, onStar }) => {
   const [selectedNote, setSelectedNote] = useState(DEFAULT_STATE);
   const [modalVisibility, setModalVisibility] = useState(false);
   const [tagVisibility, setTagVisibility] = useState(false);
+  const [dimensions, setDimensions] = useState({ rowHeight: 0, rowGap: 0 });
   const contentInput = useRef(null);
+  const gridNote = useRef(null);
 
   useEffect(() => {
     contentInput.current.focus();
@@ -20,6 +22,7 @@ const Notes = ({ notes, onRemove, onArchive, onUpdate, onStar }) => {
         setSelectedNote(res.selectedNote);
       }
     });
+    resizeGridItem();
   }, []);
 
   useEffect(() => {
@@ -37,6 +40,18 @@ const Notes = ({ notes, onRemove, onArchive, onUpdate, onStar }) => {
     }
   }, [notes]);
 
+  const resizeGridItem = () => {
+    const rowHeight = parseInt(
+      window
+        .getComputedStyle(gridNote.current)
+        .getPropertyValue('grid-auto-rows')
+    );
+    const rowGap = parseInt(
+      window.getComputedStyle(gridNote.current).getPropertyValue('grid-row-gap')
+    );
+    setDimensions({ rowGap, rowHeight });
+  };
+
   const onNoteChange = e => {
     let note = {
       ...selectedNote,
@@ -50,15 +65,19 @@ const Notes = ({ notes, onRemove, onArchive, onUpdate, onStar }) => {
     <ThemeContext.Consumer>
       {({ theme }) => (
         <div>
-          {tagVisibility && <div className="note-tag">STARRED</div>}
-          <div className="notes">
+          {tagVisibility && (
+            <div style={{ marginBottom: '8px' }} className="note-tag">
+              STARRED
+            </div>
+          )}
+          <div className="notes-grid">
             {notes
               .filter(item => item.isStarred)
               .map(item => {
                 return (
                   <Note
+                    dimensions={dimensions}
                     key={item.id}
-                    className="note"
                     note={item}
                     onRemove={onRemove}
                     onArchive={onArchive}
@@ -72,18 +91,21 @@ const Notes = ({ notes, onRemove, onArchive, onUpdate, onStar }) => {
             {modalVisibility}
           </div>
           {tagVisibility && (
-            <div style={{ marginTop: '8px' }} className="note-tag">
+            <div
+              style={{ marginTop: '16px', marginBottom: '8px' }}
+              className="note-tag"
+            >
               OTHERS
             </div>
           )}
-          <div className="notes">
+          <div ref={gridNote} className="notes-grid">
             {notes
               .filter(item => !item.isStarred)
               .map(item => {
                 return (
                   <Note
+                    dimensions={dimensions}
                     key={item.id}
-                    className="note"
                     note={item}
                     onRemove={onRemove}
                     onArchive={onArchive}

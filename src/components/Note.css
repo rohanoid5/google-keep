@@ -167,22 +167,22 @@
 }
 
 @media screen and (min-width: 400px) {
-  .note {
+  /* .note {
     width: 50%;
-  }
+  } */
 }
 @media screen and (min-width: 720px) {
-  .note {
+  /* .note {
     width: 33.3%;
-  }
+  } */
   .note-add {
     width: 50%;
   }
 }
 @media screen and (min-width: 960px) {
-  .note {
+  /* .note {
     width: 25%;
-  }
+  } */
 }
 
 .note-inner {

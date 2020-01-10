@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import './Note.css';
 import ThemeContext from '../contexts/ThemeContext';
 import {
@@ -16,15 +16,27 @@ const Note = ({
   onStar,
   onUpdate,
   setModalVisibility,
-  setSelectedNote
+  setSelectedNote,
+  dimensions
 }) => {
   const colorIndex = DARK_COLORS.indexOf(note.backgroundColor);
   const [showActions, setShowActions] = useState(false);
   const [colorPickerVisibility, setColorPickerVisibility] = useState(false);
-  const [imageInputVisibility, setImageInputVisibility] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(
     colorIndex === -1 ? 0 : colorIndex
   );
+  const noteRef = useRef(null);
+  const [gridRowEnd, setGridRowEnd] = useState(1);
+
+  useEffect(() => {
+    let rowSpan = Math.ceil(
+      (noteRef.current.querySelector('.note-inner').getBoundingClientRect()
+        .height +
+        dimensions.rowGap) /
+        (dimensions.rowHeight + dimensions.rowGap)
+    );
+    setGridRowEnd(rowSpan);
+  }, [dimensions]);
 
   const onNoteSelect = e => {
     e.stopPropagation();
@@ -59,7 +71,7 @@ const Note = ({
   return (
     <ThemeContext.Consumer>
       {({ theme }) => (
-        <div className="note">
+        <div ref={noteRef} style={{ gridRowEnd: `span ${gridRowEnd}` }}>
           <div
             className="note-inner"
             onMouseOver={() => setShowActions(true)}
