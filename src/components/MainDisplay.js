@@ -10,9 +10,16 @@ const MainDisplay = ({ selctedIndex, addNewNote }) => {
   const [noteState, setNoteState] = useState(DEFAULT_STATE);
 
   const onSave = () => {
-    let { title, body, isStarred, isArchived, backgroundColor } = noteState;
+    let {
+      title,
+      body,
+      isStarred,
+      isArchived,
+      backgroundColor,
+      image
+    } = noteState;
     if (title !== '' || body !== '') {
-      addNewNote(title, body, '', backgroundColor, isStarred, isArchived);
+      addNewNote(title, body, image, backgroundColor, isStarred, isArchived);
       setNoteState(DEFAULT_STATE);
     }
     setFocus(false);

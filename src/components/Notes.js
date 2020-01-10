@@ -131,6 +131,18 @@ const Notes = ({ notes, onRemove, onArchive, onUpdate, onStar }) => {
                   type="text"
                   placeholder="Take a note..."
                 ></textarea>
+                <input
+                  onChange={onNoteChange}
+                  value={selectedNote.image}
+                  className={
+                    theme === DARK_THEME
+                      ? 'note-title-input'
+                      : 'note-title-input note-title-input-light'
+                  }
+                  type="text"
+                  name="image"
+                  placeholder="Paste your image url here"
+                />
                 <button
                   className={
                     theme === DARK_THEME

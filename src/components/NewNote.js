@@ -11,9 +11,9 @@ import ColorPicker from './ColorPicker';
 
 const NewNote = ({ isFocussed, setFocus, noteState, setNoteState, onSave }) => {
   const contentInput = useRef(null);
-  const imageUploadButton = useRef(null);
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [colorPickerVisibility, setColorPickerVisibility] = useState(false);
+  const [imageInputVisibility, setImageInputVisibility] = useState(false);
 
   useEffect(() => {
     if (contentInput && contentInput.current) {
@@ -47,19 +47,26 @@ const NewNote = ({ isFocussed, setFocus, noteState, setNoteState, onSave }) => {
     });
   };
 
-  const handleImageUpload = e => {
-    e.stopPropagation();
-    e.preventDefault();
-    const file = e.target.files[0];
-    console.log(file);
-  };
-
   const handleBackgroundColor = (index, color) => {
     setSelectedIndex(index);
     setNoteState(noteState => {
       return {
         ...noteState,
         backgroundColor: color
+      };
+    });
+  };
+
+  const handleAttachPicture = () => {
+    setImageInputVisibility(imageInputVisibility => !imageInputVisibility);
+  };
+
+  const handleClearImage = () => {
+    setImageInputVisibility(false);
+    setNoteState(noteState => {
+      return {
+        ...noteState,
+        image: ''
       };
     });
   };
@@ -126,6 +133,20 @@ const NewNote = ({ isFocussed, setFocus, noteState, setNoteState, onSave }) => {
               type="text"
               placeholder="Take a note..."
             ></textarea>
+            {imageInputVisibility && (
+              <input
+                onChange={handleChange}
+                value={noteState.image}
+                className={
+                  theme === LIGHT_THEME && selectedIndex === 0
+                    ? 'note-title-input note-title-input-light'
+                    : 'note-title-input'
+                }
+                type="text"
+                name="image"
+                placeholder="Paste your image url here"
+              />
+            )}
             {noteState.image !== '' && (
               <div className="note-image-container">
                 <div
@@ -134,21 +155,14 @@ const NewNote = ({ isFocussed, setFocus, noteState, setNoteState, onSave }) => {
                       ? 'icon note-image-remove'
                       : 'icon icon-light note-image-remove'
                   }
+                  onClick={handleClearImage}
                 >
-                  <i
-                    className={
-                      noteState.isArchived
-                        ? 'material-icons'
-                        : 'material-icons-outlined'
-                    }
-                  >
-                    clear
-                  </i>
+                  <i className="material-icons">clear</i>
                 </div>
                 <img
                   className="note-image"
-                  alt="uploaded_img"
-                  src="https://images.pexels.com/photos/1226302/pexels-photo-1226302.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+                  alt="invalid_img_url"
+                  src={noteState.image}
                 />
               </div>
             )}
@@ -172,23 +186,23 @@ const NewNote = ({ isFocussed, setFocus, noteState, setNoteState, onSave }) => {
                     archive
                   </i>
                 </div>
-                <input
-                  type="file"
-                  id="file"
-                  ref={imageUploadButton}
-                  style={{ display: 'none' }}
-                  onChange={handleImageUpload}
-                />
                 <div
-                  type="file"
                   className={
                     theme === LIGHT_THEME && selectedIndex === 0
                       ? 'icon  icon-light'
                       : 'icon material-icon-white'
                   }
-                  onClick={() => imageUploadButton.current.click()}
+                  onClick={handleAttachPicture}
                 >
-                  <i className="material-icons">add_photo_alternate</i>
+                  <i
+                    className={
+                      noteState.isArchived
+                        ? 'material-icons'
+                        : 'material-icons-outlined'
+                    }
+                  >
+                    add_photo_alternate
+                  </i>
                 </div>
                 <div
                   className={

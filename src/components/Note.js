@@ -21,6 +21,7 @@ const Note = ({
   const colorIndex = DARK_COLORS.indexOf(note.backgroundColor);
   const [showActions, setShowActions] = useState(false);
   const [colorPickerVisibility, setColorPickerVisibility] = useState(false);
+  const [imageInputVisibility, setImageInputVisibility] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(
     colorIndex === -1 ? 0 : colorIndex
   );
@@ -99,6 +100,15 @@ const Note = ({
             )}
             <div className="note-title">{note.title}</div>
             <div className="note-content">{note.body}</div>
+            {note.image !== '' && (
+              <div className="note-image-container">
+                <img
+                  className="note-image"
+                  alt="invalid_img_url"
+                  src={note.image}
+                />
+              </div>
+            )}
             <div className="note-actions">
               {showActions && (
                 <div
