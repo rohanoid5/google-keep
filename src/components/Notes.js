@@ -86,7 +86,6 @@ const Notes = ({ notes, onRemove, onArchive, onUpdate, onStar }) => {
                   />
                 );
               })}
-            {modalVisibility}
           </div>
           {tagVisibility && (
             <div
@@ -97,24 +96,25 @@ const Notes = ({ notes, onRemove, onArchive, onUpdate, onStar }) => {
             </div>
           )}
           <div ref={gridNote} className="notes-grid">
-            {notes
-              .filter(item => !item.isStarred)
-              .map(item => {
-                return (
-                  <Note
-                    dimensions={dimensions}
-                    key={item.id}
-                    note={item}
-                    onRemove={onRemove}
-                    onArchive={onArchive}
-                    onStar={onStar}
-                    onUpdate={onUpdate}
-                    setModalVisibility={setModalVisibility}
-                    setSelectedNote={setSelectedNote}
-                  />
-                );
-              })}
-            {modalVisibility}
+            {notes.length > 0
+              ? notes
+                  .filter(item => !item.isStarred)
+                  .map(item => {
+                    return (
+                      <Note
+                        dimensions={dimensions}
+                        key={item.id}
+                        note={item}
+                        onRemove={onRemove}
+                        onArchive={onArchive}
+                        onStar={onStar}
+                        onUpdate={onUpdate}
+                        setModalVisibility={setModalVisibility}
+                        setSelectedNote={setSelectedNote}
+                      />
+                    );
+                  })
+              : 'THIS PLACE IS EMPTY'}
           </div>
           <Modal
             modalVisibility={modalVisibility}
