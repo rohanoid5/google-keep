@@ -48,7 +48,7 @@ const NavBar = ({
   return (
     <nav className={className}>
       {renderListItem}
-      <div style={{ backgroundColor: '#BBB', height: '1px' }}></div>
+      <div className="separator"></div>
     </nav>
   );
 };

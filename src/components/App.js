@@ -47,7 +47,7 @@ class App extends Component {
           className={theme === DARK_THEME ? 'App App-dark' : 'App App-light'}
         >
           <Header setNavbarCollapse={this.setNavbarCollapse} />
-          <div style={{ backgroundColor: '#BBB', height: '1px' }}></div>
+          <div className="separator"></div>
           <div className="container">
             <NavBar
               theme={theme}
