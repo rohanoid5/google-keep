@@ -53,5 +53,13 @@ export default {
       'notes',
       notes.filter(({ isArchived }) => isArchived)
     );
+  },
+
+  async getNoteFilter() {
+    return await localforage.getItem('filter');
+  },
+
+  async updateNoteFilter(filterValue) {
+    return await localforage.setItem('filter', filterValue);
   }
 };

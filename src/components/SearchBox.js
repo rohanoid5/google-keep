@@ -1,8 +1,8 @@
 import React, { useRef, useEffect, useState } from 'react';
-import localforage from 'localforage';
 import './SearchBox.css';
 import ThemeContext from '../contexts/ThemeContext';
 import { DARK_THEME } from '../constants/ThemeConstants';
+import API from '../utils/apiCaller';
 
 const SearchBox = ({ updateFilter, value }) => {
   const searchInput = useRef(null);
@@ -13,17 +13,18 @@ const SearchBox = ({ updateFilter, value }) => {
   };
 
   useEffect(() => {
-    localforage.getItem('filter', filterValue).then(res => {
+    API.getNoteFilter().then(res => {
       if (res) {
         setFilterValue(res);
         updateFilter(res);
       }
     });
-  }, []);
+  }, [setFilterValue, updateFilter]);
 
   useEffect(() => {
-    updateFilter(filterValue);
-    localforage.setItem('filter', filterValue);
+    API.updateNoteFilter(filterValue).then(() => {
+      updateFilter(filterValue);
+    });
   }, [filterValue, updateFilter]);
 
   return (
