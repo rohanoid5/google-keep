@@ -1,6 +1,6 @@
-import React, { useRef, useEffect } from 'react';
-import autosize from 'autosize';
+import React from 'react';
 import { DARK_THEME } from '../constants/ThemeConstants';
+import { handleInputResize } from '../utils/helpers';
 
 const Modal = ({
   modalVisibility,
@@ -9,13 +9,6 @@ const Modal = ({
   selectedNote,
   theme
 }) => {
-  const contentInput = useRef(null);
-
-  useEffect(() => {
-    contentInput.current.focus();
-    autosize(contentInput.current);
-  }, []);
-
   return (
     <div className={modalVisibility ? 'modale opened' : 'modale'}>
       <div
@@ -42,7 +35,7 @@ const Modal = ({
             onChange={onNoteChange}
             value={selectedNote.body}
             name="body"
-            ref={contentInput}
+            onKeyDown={handleInputResize}
             rows={1}
             className={
               theme === DARK_THEME

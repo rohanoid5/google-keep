@@ -86,8 +86,8 @@
 
 .note-content-input {
   font-size: 15px;
-  max-height: 150px;
-  min-height: 32px;
+  max-height: 200px;
+  min-height: 50px;
   width: 100%;
   margin-bottom: 8px;
   color: #ffffff;

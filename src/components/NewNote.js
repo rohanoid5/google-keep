@@ -1,5 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react';
-import autosize from 'autosize';
+import React, { useState } from 'react';
 import ThemeContext from '../contexts/ThemeContext';
 import {
   DARK_THEME,
@@ -8,19 +7,12 @@ import {
   LIGHT_THEME
 } from '../constants/ThemeConstants';
 import ColorPicker from './ColorPicker';
+import { handleInputResize } from '../utils/helpers';
 
 const NewNote = ({ isFocussed, setFocus, noteState, setNoteState, onSave }) => {
-  const contentInput = useRef(null);
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [colorPickerVisibility, setColorPickerVisibility] = useState(false);
   const [imageInputVisibility, setImageInputVisibility] = useState(false);
-
-  useEffect(() => {
-    if (contentInput && contentInput.current) {
-      contentInput.current.focus();
-      autosize(contentInput.current);
-    }
-  }, []);
 
   const handleChange = e => {
     setNoteState({
@@ -123,7 +115,7 @@ const NewNote = ({ isFocussed, setFocus, noteState, setNoteState, onSave }) => {
               onChange={handleChange}
               value={noteState.body}
               name="body"
-              ref={contentInput}
+              onKeyDown={handleInputResize}
               rows={1}
               className={
                 theme === LIGHT_THEME && selectedIndex === 0
