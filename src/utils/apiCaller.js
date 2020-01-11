@@ -61,5 +61,16 @@ export default {
 
   async updateNoteFilter(filterValue) {
     return await localforage.setItem('filter', filterValue);
+  },
+
+  async getSelectedNoteInfo() {
+    return await localforage.getItem('selectionInfo');
+  },
+
+  async setSelectedNoteInfo(modalVisibility, selectedNote) {
+    return await localforage.setItem('selectionInfo', {
+      modalVisibility,
+      selectedNote
+    });
   }
 };

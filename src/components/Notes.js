@@ -1,10 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
-import localforage from 'localforage';
 import { DEFAULT_STATE } from '../constants/DefaultStates';
-import { DARK_THEME } from '../constants/ThemeConstants';
 import Note from './Note';
 import Modal from './Modal';
 import ThemeContext from '../contexts/ThemeContext';
+import API from '../utils/apiCaller';
 
 const Notes = ({ notes, onRemove, onArchive, onUpdate, onStar }) => {
   const [selectedNote, setSelectedNote] = useState(DEFAULT_STATE);
@@ -14,7 +13,7 @@ const Notes = ({ notes, onRemove, onArchive, onUpdate, onStar }) => {
   const gridNote = useRef(null);
 
   useEffect(() => {
-    localforage.getItem('selectionInfo').then(res => {
+    API.getSelectedNoteInfo().then(res => {
       if (res && res.modalVisibility && res.selectedNote) {
         setModalVisibility(true);
         setSelectedNote(res.selectedNote);
@@ -24,7 +23,7 @@ const Notes = ({ notes, onRemove, onArchive, onUpdate, onStar }) => {
   }, []);
 
   useEffect(() => {
-    localforage.setItem('selectionInfo', { modalVisibility, selectedNote });
+    API.setSelectedNoteInfo(modalVisibility, selectedNote);
   }, [modalVisibility, selectedNote]);
 
   useEffect(() => {
