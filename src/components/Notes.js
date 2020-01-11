@@ -58,6 +58,13 @@ const Notes = ({ notes, onRemove, onArchive, onUpdate, onStar }) => {
     onUpdate(note);
   };
 
+  const renderNotePlaceholder = () => (
+    <div className="placeholder-note">
+      <i className="material-icons-outlined md-96 placeholder-icon">note</i>
+      <div className="placeholder-title">Your notes will appear here</div>
+    </div>
+  );
+
   return (
     <ThemeContext.Consumer>
       {({ theme }) => (
@@ -95,26 +102,26 @@ const Notes = ({ notes, onRemove, onArchive, onUpdate, onStar }) => {
             </div>
           )}
           <div ref={gridNote} className="notes-grid">
-            {notes.length > 0
-              ? notes
-                  .filter(item => !item.isStarred)
-                  .map(item => {
-                    return (
-                      <Note
-                        dimensions={dimensions}
-                        key={item.id}
-                        note={item}
-                        onRemove={onRemove}
-                        onArchive={onArchive}
-                        onStar={onStar}
-                        onUpdate={onUpdate}
-                        setModalVisibility={setModalVisibility}
-                        setSelectedNote={setSelectedNote}
-                      />
-                    );
-                  })
-              : 'THIS PLACE IS EMPTY'}
+            {notes
+              .filter(item => !item.isStarred)
+              .map(item => {
+                return (
+                  <Note
+                    dimensions={dimensions}
+                    key={item.id}
+                    note={item}
+                    onRemove={onRemove}
+                    onArchive={onArchive}
+                    onStar={onStar}
+                    onUpdate={onUpdate}
+                    setModalVisibility={setModalVisibility}
+                    setSelectedNote={setSelectedNote}
+                  />
+                );
+              })}
           </div>
+          <div>{notes.length === 0 && renderNotePlaceholder()}</div>
+
           <Modal
             modalVisibility={modalVisibility}
             setModalVisibility={setModalVisibility}
