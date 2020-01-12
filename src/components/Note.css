@@ -166,23 +166,10 @@
   color: #ffffff;
 }
 
-@media screen and (min-width: 400px) {
-  /* .note {
-    width: 50%;
-  } */
-}
 @media screen and (min-width: 720px) {
-  /* .note {
-    width: 33.3%;
-  } */
   .note-add {
     width: 50%;
   }
-}
-@media screen and (min-width: 960px) {
-  /* .note {
-    width: 25%;
-  } */
 }
 
 .note-inner {
@@ -198,7 +185,7 @@
 }
 
 .note:hover .note-inner {
-  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.5);
 }
 
 .modale:before {

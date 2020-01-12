@@ -72,7 +72,11 @@ const Note = ({
   return (
     <ThemeContext.Consumer>
       {({ theme }) => (
-        <div ref={noteRef} style={{ gridRowEnd: `span ${gridRowEnd}` }}>
+        <div
+          className="note"
+          ref={noteRef}
+          style={{ gridRowEnd: `span ${gridRowEnd}` }}
+        >
           <div
             className="note-inner"
             onMouseOver={() => setShowActions(true)}
