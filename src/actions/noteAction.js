@@ -24,7 +24,7 @@ export const addNewNote = (
   title,
   body,
   image = '',
-  backgroundColor = '',
+  backgroundColor = 'inherit',
   isStarred = false,
   isArchived = false
 ) => {

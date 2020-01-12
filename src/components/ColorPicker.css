@@ -8,7 +8,7 @@
   width: 120px;
   display: flex;
   flex-wrap: wrap;
-  padding: 8;
+  padding: 8px;
   justify-content: space-between;
   align-items: center;
   z-index: 99;

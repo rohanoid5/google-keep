@@ -2,7 +2,7 @@ export const DEFAULT_STATE = {
   title: '',
   body: '',
   image: '',
-  backgroundColor: '',
+  backgroundColor: 'inherit',
   isArchived: false,
   isStarred: false
 };

@@ -1,10 +1,8 @@
 export const LIGHT_THEME = 'LIGHT_THEME';
 export const DARK_THEME = 'DARK_THEME';
 
-export const LIGHT_COLOR = '#ececec';
-
 export const LIGHT_COLORS = [
-  '#ececec',
+  'inherit',
   '#880e4f',
   '#4a148c',
   '#1a237e',
@@ -13,7 +11,7 @@ export const LIGHT_COLORS = [
 ];
 
 export const DARK_COLORS = [
-  '#282c34',
+  'inherit',
   '#880e4f',
   '#4a148c',
   '#1a237e',

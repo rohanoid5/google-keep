@@ -20,6 +20,7 @@ const Notes = ({ notes, onRemove, onArchive, onUpdate, onStar }) => {
       }
     });
     resizeGridItem();
+    window.addEventListener('resize', resizeGridItem);
   }, []);
 
   useEffect(() => {

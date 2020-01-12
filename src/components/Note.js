@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import ReactMarkdown from 'react-markdown';
 import './Note.css';
 import ThemeContext from '../contexts/ThemeContext';
 import {
@@ -82,7 +83,7 @@ const Note = ({
               position: 'relative',
               backgroundColor: `${note.backgroundColor}`,
               color:
-                theme === LIGHT_THEME && note.backgroundColor === ''
+                theme === LIGHT_THEME && note.backgroundColor === 'inherit'
                   ? '#000000'
                   : '#eeeeee'
             }}
@@ -111,7 +112,9 @@ const Note = ({
               </div>
             )}
             <div className="note-title">{note.title}</div>
-            <div className="note-content">{note.body}</div>
+            <div className="note-content">
+              <ReactMarkdown source={note.body} />
+            </div>
             {note.image !== '' && (
               <div className="note-image-container">
                 <img
