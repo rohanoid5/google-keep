@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/google-keep/static/css/main.9bbdf8b7.chunk.css",
-    "main.js": "/google-keep/static/js/main.b5071633.chunk.js",
-    "main.js.map": "/google-keep/static/js/main.b5071633.chunk.js.map",
+    "main.js": "/google-keep/static/js/main.d4766293.chunk.js",
+    "main.js.map": "/google-keep/static/js/main.d4766293.chunk.js.map",
     "runtime-main.js": "/google-keep/static/js/runtime-main.abf4decf.js",
     "runtime-main.js.map": "/google-keep/static/js/runtime-main.abf4decf.js.map",
     "static/js/2.f32d5228.chunk.js": "/google-keep/static/js/2.f32d5228.chunk.js",
     "static/js/2.f32d5228.chunk.js.map": "/google-keep/static/js/2.f32d5228.chunk.js.map",
     "index.html": "/google-keep/index.html",
-    "precache-manifest.1baaaa0bb25ee0fc4603f7c1e1c9d6be.js": "/google-keep/precache-manifest.1baaaa0bb25ee0fc4603f7c1e1c9d6be.js",
+    "precache-manifest.20b2c37b32205eda35bb4f4b901c7037.js": "/google-keep/precache-manifest.20b2c37b32205eda35bb4f4b901c7037.js",
     "service-worker.js": "/google-keep/service-worker.js",
     "static/css/main.9bbdf8b7.chunk.css.map": "/google-keep/static/css/main.9bbdf8b7.chunk.css.map",
     "static/js/2.f32d5228.chunk.js.LICENSE": "/google-keep/static/js/2.f32d5228.chunk.js.LICENSE"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.abf4decf.js",
     "static/js/2.f32d5228.chunk.js",
     "static/css/main.9bbdf8b7.chunk.css",
-    "static/js/main.b5071633.chunk.js"
+    "static/js/main.d4766293.chunk.js"
   ]
 }
